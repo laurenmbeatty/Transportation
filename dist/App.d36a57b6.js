@@ -28290,7 +28290,9 @@ function (_React$Component) {
   _createClass(TrafficLight, [{
     key: "render",
     value: function render() {
-      var color = this.props.color;
+      var _this$props = this.props,
+          color = _this$props.color,
+          leftColor = _this$props.leftColor;
       return _react.default.createElement(Styled.TrafficLight, null, _react.default.createElement(Styled.Light, {
         opacity: color === "red" ? 1 : 0.3,
         inputColor: "red"
@@ -28301,7 +28303,7 @@ function (_React$Component) {
         opacity: color === "green" ? 1 : 0.3,
         inputColor: "#34CA4A"
       }), _react.default.createElement(Styled.LeftLight, {
-        inputColor: "orange"
+        inputColor: leftColor
       }));
     }
   }]);
@@ -28390,7 +28392,8 @@ function (_React$Component) {
     }
 
     return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(App)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = {
-      lightState: "green"
+      lightState: "green",
+      leftState: "caution"
     }, _this.machine = {
       green: {
         TIMER: "yellow"
@@ -28401,10 +28404,27 @@ function (_React$Component) {
       red: {
         TIMER: "green"
       }
+    }, _this.leftTurnMachine = {
+      go: {
+        LEFT_TIMER: "caution"
+      },
+      caution: {
+        LEFT_TIMER: "stop"
+      },
+      stop: {
+        LEFT_TIMER: "go"
+      }
+    }, _this.startService = function () {//start cycling through transitions
     }, _this.transition = function (state, action) {
-      _this.setState({
-        lightState: _this.machine[state][action]
-      });
+      if (action === "TIMER") {
+        _this.setState({
+          lightState: _this.machine[state][action]
+        });
+      } else if (action === "LEFT_TIMER") {
+        _this.setState({
+          leftState: _this.leftTurnMachine[state][action]
+        });
+      }
     }, _temp));
   }
 
@@ -28415,17 +28435,23 @@ function (_React$Component) {
 
       setInterval(function () {
         _this2.transition(_this2.state.lightState, "TIMER");
+
+        _this2.transition(_this2.state.leftState, "LEFT_TIMER");
       }, 2000);
     }
   }, {
     key: "render",
     value: function render() {
-      var lightState = this.state.lightState;
+      var _this$state = this.state,
+          lightState = _this$state.lightState,
+          leftState = _this$state.leftState;
       return _react.default.createElement(Styled.Container, null, _react.default.createElement(_TrafficLight.default, {
         color: lightState,
+        leftColor: leftState,
         id: "central"
       }), _react.default.createElement(_TrafficLight.default, {
         color: lightState,
+        leftColor: leftState,
         id: "spring"
       }));
     }
@@ -28462,7 +28488,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63044" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64552" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

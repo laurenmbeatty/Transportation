@@ -2,7 +2,7 @@ import React from "react";
 import * as Styled from "./styles";
 class TrafficLight extends React.Component {
   render() {
-    const { color } = this.props;
+    const { color, leftColor } = this.props;
     return (
       <Styled.TrafficLight>
         <Styled.Light opacity={color === "red" ? 1 : 0.3} inputColor="red" />
@@ -14,7 +14,7 @@ class TrafficLight extends React.Component {
           opacity={color === "green" ? 1 : 0.3}
           inputColor="#34CA4A"
         />
-        <Styled.LeftLight inputColor="orange" />
+        <Styled.LeftLight inputColor={leftColor} />
       </Styled.TrafficLight>
     );
   }
