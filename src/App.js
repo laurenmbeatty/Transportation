@@ -5,7 +5,9 @@ import * as Styled from "./styles";
 class App extends React.Component {
   state = {
     lightState: "green",
-    leftState: "caution"
+    otherLightState: "red",
+    leftState: "caution",
+    otherLeftState: "stop"
   };
 
   machine = {
@@ -20,20 +22,40 @@ class App extends React.Component {
     }
   };
 
-  leftTurnMachine = {
-    go: {
-      LEFT_TIMER: "caution"
+  otherMachine = {
+    green: {
+      OTHER_TIMER: "yellow"
     },
-    caution: {
-      LEFT_TIMER: "stop"
+    yellow: {
+      OTHER_TIMER: "red"
     },
-    stop: {
-      LEFT_TIMER: "go"
+    red: {
+      OTHER_TIMER: "green"
     }
   };
 
-  startService = () => {
-    //start cycling through transitions
+  leftTurnMachine = {
+    go: {
+      LEFT_TURN_TIMER: "caution"
+    },
+    caution: {
+      LEFT_TURN_TIMER: "stop"
+    },
+    stop: {
+      LEFT_TURN_TIMER: "go"
+    }
+  };
+
+  otherLeftTurnMachine = {
+    go: {
+      OTHER_LEFT_TURN_TIMER: "caution"
+    },
+    caution: {
+      OTHER_LEFT_TURN_TIMER: "stop"
+    },
+    stop: {
+      OTHER_LEFT_TURN_TIMER: "go"
+    }
   };
 
   transition = (state, action) => {
@@ -41,9 +63,17 @@ class App extends React.Component {
       this.setState({
         lightState: this.machine[state][action]
       });
-    } else if (action === "LEFT_TIMER") {
+    } else if (action === "OTHER_TIMER") {
+      this.setState({
+        otherLightState: this.otherMachine[state][action]
+      });
+    } else if (action === "LEFT_TURN_TIMER") {
       this.setState({
         leftState: this.leftTurnMachine[state][action]
+      });
+    } else if (action === "OTHER_LEFT_TURN_TIMER") {
+      this.setState({
+        otherLeftState: this.otherLeftTurnMachine[state][action]
       });
     }
   };
@@ -51,16 +81,27 @@ class App extends React.Component {
   componentDidMount() {
     setInterval(() => {
       this.transition(this.state.lightState, "TIMER");
-      this.transition(this.state.leftState, "LEFT_TIMER");
-    }, 2000);
+      this.transition(this.state.otherLightState, "OTHER_TIMER");
+      this.transition(this.state.leftState, "LEFT_TURN_TIMER");
+      this.transition(this.state.otherLeftState, "OTHER_LEFT_TURN_TIMER");
+    }, 4000);
   }
 
   render() {
-    const { lightState, leftState } = this.state;
+    const {
+      lightState,
+      otherLightState,
+      leftState,
+      otherLeftState
+    } = this.state;
     return (
       <Styled.Container>
         <TrafficLight color={lightState} leftColor={leftState} id="central" />
-        <TrafficLight color={lightState} leftColor={leftState} id="spring" />
+        <TrafficLight
+          color={otherLightState}
+          leftColor={otherLeftState}
+          id="spring"
+        />
       </Styled.Container>
     );
   }

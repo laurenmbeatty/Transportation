@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 export const TrafficLight = styled.div`
   display: flex;
@@ -18,5 +18,26 @@ export const Light = styled.div`
   transition: opacity 0.3s;
   background-color: ${props => props.inputColor};
 `;
-
-export const LeftLight = styled(Light)``;
+const flash = keyframes`
+  0% {
+      opacity; 0.2;
+  }
+  50% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0.2;
+  }
+`;
+const animationRule = css`
+  ${flash} 1s infinite alternate;
+`;
+export const LeftLight = styled(Light)`
+  background-color: ${props =>
+    props.inputColor === "go" || props.inputColor === "caution"
+      ? "orange"
+      : "#333"};
+  &.flash {
+    animation: ${animationRule};
+  }
+`;

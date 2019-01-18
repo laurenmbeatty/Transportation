@@ -14,7 +14,10 @@ class TrafficLight extends React.Component {
           opacity={color === "green" ? 1 : 0.3}
           inputColor="#34CA4A"
         />
-        <Styled.LeftLight inputColor={leftColor} />
+        <Styled.LeftLight
+          className={leftColor === "caution" ? "flash" : ""}
+          inputColor={leftColor}
+        />
       </Styled.TrafficLight>
     );
   }

@@ -28193,12 +28193,32 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.LeftLight = exports.Light = exports.TrafficLight = void 0;
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\n  background-color: ", ";\n  &.flash {\n    animation: ", ";\n  }\n"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n  ", " 1s infinite alternate;\n"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral([""]);
+  var data = _taggedTemplateLiteral(["\n  0% {\n      opacity; 0.2;\n  }\n  50% {\n      opacity: 1;\n  }\n  100% {\n      opacity: 0.2;\n  }\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -28240,7 +28260,11 @@ var Light = _styledComponents.default.div(_templateObject2(), function (props) {
 });
 
 exports.Light = Light;
-var LeftLight = (0, _styledComponents.default)(Light)(_templateObject3());
+var flash = (0, _styledComponents.keyframes)(_templateObject3());
+var animationRule = (0, _styledComponents.css)(_templateObject4(), flash);
+var LeftLight = (0, _styledComponents.default)(Light)(_templateObject5(), function (props) {
+  return props.inputColor === "go" || props.inputColor === "caution" ? "orange" : "#333";
+}, animationRule);
 exports.LeftLight = LeftLight;
 },{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/TrafficLight/TrafficLight.js":[function(require,module,exports) {
 "use strict";
@@ -28303,6 +28327,7 @@ function (_React$Component) {
         opacity: color === "green" ? 1 : 0.3,
         inputColor: "#34CA4A"
       }), _react.default.createElement(Styled.LeftLight, {
+        className: leftColor === "caution" ? "flash" : "",
         inputColor: leftColor
       }));
     }
@@ -28393,7 +28418,9 @@ function (_React$Component) {
 
     return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(App)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = {
       lightState: "green",
-      leftState: "caution"
+      otherLightState: "red",
+      leftState: "caution",
+      otherLeftState: "stop"
     }, _this.machine = {
       green: {
         TIMER: "yellow"
@@ -28404,25 +28431,52 @@ function (_React$Component) {
       red: {
         TIMER: "green"
       }
+    }, _this.otherMachine = {
+      green: {
+        OTHER_TIMER: "yellow"
+      },
+      yellow: {
+        OTHER_TIMER: "red"
+      },
+      red: {
+        OTHER_TIMER: "green"
+      }
     }, _this.leftTurnMachine = {
       go: {
-        LEFT_TIMER: "caution"
+        LEFT_TURN_TIMER: "caution"
       },
       caution: {
-        LEFT_TIMER: "stop"
+        LEFT_TURN_TIMER: "stop"
       },
       stop: {
-        LEFT_TIMER: "go"
+        LEFT_TURN_TIMER: "go"
       }
-    }, _this.startService = function () {//start cycling through transitions
+    }, _this.otherLeftTurnMachine = {
+      go: {
+        OTHER_LEFT_TURN_TIMER: "caution"
+      },
+      caution: {
+        OTHER_LEFT_TURN_TIMER: "stop"
+      },
+      stop: {
+        OTHER_LEFT_TURN_TIMER: "go"
+      }
     }, _this.transition = function (state, action) {
       if (action === "TIMER") {
         _this.setState({
           lightState: _this.machine[state][action]
         });
-      } else if (action === "LEFT_TIMER") {
+      } else if (action === "OTHER_TIMER") {
+        _this.setState({
+          otherLightState: _this.otherMachine[state][action]
+        });
+      } else if (action === "LEFT_TURN_TIMER") {
         _this.setState({
           leftState: _this.leftTurnMachine[state][action]
+        });
+      } else if (action === "OTHER_LEFT_TURN_TIMER") {
+        _this.setState({
+          otherLeftState: _this.otherLeftTurnMachine[state][action]
         });
       }
     }, _temp));
@@ -28436,22 +28490,28 @@ function (_React$Component) {
       setInterval(function () {
         _this2.transition(_this2.state.lightState, "TIMER");
 
-        _this2.transition(_this2.state.leftState, "LEFT_TIMER");
-      }, 2000);
+        _this2.transition(_this2.state.otherLightState, "OTHER_TIMER");
+
+        _this2.transition(_this2.state.leftState, "LEFT_TURN_TIMER");
+
+        _this2.transition(_this2.state.otherLeftState, "OTHER_LEFT_TURN_TIMER");
+      }, 4000);
     }
   }, {
     key: "render",
     value: function render() {
       var _this$state = this.state,
           lightState = _this$state.lightState,
-          leftState = _this$state.leftState;
+          otherLightState = _this$state.otherLightState,
+          leftState = _this$state.leftState,
+          otherLeftState = _this$state.otherLeftState;
       return _react.default.createElement(Styled.Container, null, _react.default.createElement(_TrafficLight.default, {
         color: lightState,
         leftColor: leftState,
         id: "central"
       }), _react.default.createElement(_TrafficLight.default, {
-        color: lightState,
-        leftColor: leftState,
+        color: otherLightState,
+        leftColor: otherLeftState,
         id: "spring"
       }));
     }
@@ -28488,7 +28548,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64552" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52482" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
