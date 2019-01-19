@@ -34,10 +34,22 @@ const animationRule = css`
 `;
 export const LeftLight = styled(Light)`
   background-color: ${props =>
-    props.inputColor === "go" || props.inputColor === "caution"
-      ? "orange"
-      : "#333"};
+    props.inputColor === "caution" ? "orange" : "#333"};
   &.flash {
     animation: ${animationRule};
+    .fa-arrow-left {
+      color: orange;
+    }
+  }
+  position: relative;
+  .fa-arrow-left {
+    position: absolute;
+    left: 1.5vmin;
+    top: 1.5vmin;
+    font-size: 1.5rem;
+    color: ${props =>
+      props.inputColor === "go" || props.inputColor === "caution"
+        ? "green"
+        : "#333"};
   }
 `;

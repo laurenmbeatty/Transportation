@@ -2,6 +2,10 @@ import React from "react";
 import { render } from "react-dom";
 import TrafficLight from "./components/TrafficLight/TrafficLight";
 import * as Styled from "./styles";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faArrowLeft);
 class App extends React.Component {
   state = {
     lightState: "green",
