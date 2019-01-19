@@ -30725,7 +30725,7 @@ var animationRule = (0, _styledComponents.css)(_templateObject4(), flash);
 var LeftLight = (0, _styledComponents.default)(Light)(_templateObject5(), function (props) {
   return props.inputColor === "caution" ? "orange" : "#333";
 }, animationRule, function (props) {
-  return props.inputColor === "go" || props.inputColor === "caution" ? "green" : "#333";
+  return props.inputColor === "go" || props.inputColor === "caution" ? "#34CA4A" : "#333";
 });
 exports.LeftLight = LeftLight;
 },{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/TrafficLight/TrafficLight.js":[function(require,module,exports) {
@@ -30810,14 +30810,24 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Container = void 0;
+exports.Section = exports.Container = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  margin: 100px;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -30831,6 +30841,10 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 var Container = _styledComponents.default.div(_templateObject());
 
 exports.Container = Container;
+
+var Section = _styledComponents.default.section(_templateObject2());
+
+exports.Section = Section;
 },{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"../node_modules/@fortawesome/free-solid-svg-icons/index.es.js":[function(require,module,exports) {
 "use strict";
 
@@ -37411,8 +37425,7 @@ function (_React$Component) {
 
             break;
 
-          default: // code block
-
+          default:
         }
       });
     }, _temp));
@@ -37435,15 +37448,15 @@ function (_React$Component) {
           otherLightState = _this$state.otherLightState,
           leftState = _this$state.leftState,
           otherLeftState = _this$state.otherLeftState;
-      return _react.default.createElement(Styled.Container, null, _react.default.createElement(_TrafficLight.default, {
+      return _react.default.createElement(Styled.Container, null, _react.default.createElement(Styled.Section, null, _react.default.createElement("h1", null, "North/South Intersection"), _react.default.createElement(_TrafficLight.default, {
         color: lightState,
         leftColor: leftState,
         id: "central"
-      }), _react.default.createElement(_TrafficLight.default, {
+      })), _react.default.createElement(Styled.Section, null, _react.default.createElement("h1", null, "East/West Intersection"), _react.default.createElement(_TrafficLight.default, {
         color: otherLightState,
         leftColor: otherLeftState,
         id: "spring"
-      }));
+      })));
     }
   }]);
 
@@ -37478,7 +37491,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58246" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56662" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

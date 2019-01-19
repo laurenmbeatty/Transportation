@@ -49,7 +49,7 @@ export const LeftLight = styled(Light)`
     font-size: 1.5rem;
     color: ${props =>
       props.inputColor === "go" || props.inputColor === "caution"
-        ? "green"
+        ? "#34CA4A"
         : "#333"};
   }
 `;

@@ -92,7 +92,6 @@ class App extends React.Component {
             });
             break;
           default:
-          // code block
         }
       }
     );
@@ -113,12 +112,18 @@ class App extends React.Component {
     } = this.state;
     return (
       <Styled.Container>
-        <TrafficLight color={lightState} leftColor={leftState} id="central" />
-        <TrafficLight
-          color={otherLightState}
-          leftColor={otherLeftState}
-          id="spring"
-        />
+        <Styled.Section>
+          <h1>North/South Intersection</h1>
+          <TrafficLight color={lightState} leftColor={leftState} id="central" />
+        </Styled.Section>
+        <Styled.Section>
+          <h1>East/West Intersection</h1>
+          <TrafficLight
+            color={otherLightState}
+            leftColor={otherLeftState}
+            id="spring"
+          />
+        </Styled.Section>
       </Styled.Container>
     );
   }
