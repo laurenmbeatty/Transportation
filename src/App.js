@@ -42,70 +42,73 @@ class App extends React.Component {
       TIMER: "phase0"
     }
   };
+  switchState = state => {
+    switch (this.state.phase) {
+      case "phase0":
+        this.setState({
+          lightState: "red",
+          otherLightState: "red",
+          leftState: "go",
+          otherLeftState: "stop",
+          photoState: phase0
+        });
+        break;
+      case "phase1":
+        this.setState({
+          lightState: "green",
+          otherLightState: "red",
+          leftState: "caution",
+          otherLeftState: "stop",
+          photoState: phase1
+        });
+        break;
+      case "phase2":
+        this.setState({
+          lightState: "yellow",
+          otherLightState: "red",
+          leftState: "caution",
+          otherLeftState: "stop",
+          photoState: phase2
+        });
+        break;
+      case "phase3":
+        this.setState({
+          lightState: "red",
+          otherLightState: "red",
+          leftState: "stop",
+          otherLeftState: "go",
+          photoState: phase3
+        });
+        break;
+
+      case "phase4":
+        this.setState({
+          lightState: "red",
+          otherLightState: "green",
+          leftState: "stop",
+          otherLeftState: "caution",
+          photoState: phase4
+        });
+        break;
+      case "phase5":
+        this.setState({
+          lightState: "red",
+          otherLightState: "yellow",
+          leftState: "stop",
+          otherLeftState: "caution",
+          photoState: phase5
+        });
+        break;
+      default:
+    }
+  };
   transition = (state, action) => {
     this.setState(
       {
         phase: this.lightMachine[state][action]
       },
       () => {
-        switch (this.state.phase) {
-          case "phase0":
-            this.setState({
-              lightState: "red",
-              otherLightState: "red",
-              leftState: "go",
-              otherLeftState: "stop",
-              photoState: phase0
-            });
-            break;
-          case "phase1":
-            this.setState({
-              lightState: "green",
-              otherLightState: "red",
-              leftState: "caution",
-              otherLeftState: "stop",
-              photoState: phase1
-            });
-            break;
-          case "phase2":
-            this.setState({
-              lightState: "yellow",
-              otherLightState: "red",
-              leftState: "caution",
-              otherLeftState: "stop",
-              photoState: phase2
-            });
-            break;
-          case "phase3":
-            this.setState({
-              lightState: "red",
-              otherLightState: "red",
-              leftState: "stop",
-              otherLeftState: "go",
-              photoState: phase3
-            });
-            break;
-
-          case "phase4":
-            this.setState({
-              lightState: "red",
-              otherLightState: "green",
-              leftState: "stop",
-              otherLeftState: "caution",
-              photoState: phase4
-            });
-            break;
-          case "phase5":
-            this.setState({
-              lightState: "red",
-              otherLightState: "yellow",
-              leftState: "stop",
-              otherLeftState: "caution",
-              photoState: phase5
-            });
-            break;
-          default:
-        }
+        this.switchState(this.state.phase);
       }
     );
   };

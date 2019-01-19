@@ -37385,79 +37385,81 @@ function (_React$Component) {
       phase5: {
         TIMER: "phase0"
       }
+    }, _this.switchState = function (state) {
+      switch (_this.state.phase) {
+        case "phase0":
+          _this.setState({
+            lightState: "red",
+            otherLightState: "red",
+            leftState: "go",
+            otherLeftState: "stop",
+            photoState: phase0
+          });
+
+          break;
+
+        case "phase1":
+          _this.setState({
+            lightState: "green",
+            otherLightState: "red",
+            leftState: "caution",
+            otherLeftState: "stop",
+            photoState: phase1
+          });
+
+          break;
+
+        case "phase2":
+          _this.setState({
+            lightState: "yellow",
+            otherLightState: "red",
+            leftState: "caution",
+            otherLeftState: "stop",
+            photoState: phase2
+          });
+
+          break;
+
+        case "phase3":
+          _this.setState({
+            lightState: "red",
+            otherLightState: "red",
+            leftState: "stop",
+            otherLeftState: "go",
+            photoState: phase3
+          });
+
+          break;
+
+        case "phase4":
+          _this.setState({
+            lightState: "red",
+            otherLightState: "green",
+            leftState: "stop",
+            otherLeftState: "caution",
+            photoState: phase4
+          });
+
+          break;
+
+        case "phase5":
+          _this.setState({
+            lightState: "red",
+            otherLightState: "yellow",
+            leftState: "stop",
+            otherLeftState: "caution",
+            photoState: phase5
+          });
+
+          break;
+
+        default:
+      }
     }, _this.transition = function (state, action) {
       _this.setState({
         phase: _this.lightMachine[state][action]
       }, function () {
-        switch (_this.state.phase) {
-          case "phase0":
-            _this.setState({
-              lightState: "red",
-              otherLightState: "red",
-              leftState: "go",
-              otherLeftState: "stop",
-              photoState: phase0
-            });
-
-            break;
-
-          case "phase1":
-            _this.setState({
-              lightState: "green",
-              otherLightState: "red",
-              leftState: "caution",
-              otherLeftState: "stop",
-              photoState: phase1
-            });
-
-            break;
-
-          case "phase2":
-            _this.setState({
-              lightState: "yellow",
-              otherLightState: "red",
-              leftState: "caution",
-              otherLeftState: "stop",
-              photoState: phase2
-            });
-
-            break;
-
-          case "phase3":
-            _this.setState({
-              lightState: "red",
-              otherLightState: "red",
-              leftState: "stop",
-              otherLeftState: "go",
-              photoState: phase3
-            });
-
-            break;
-
-          case "phase4":
-            _this.setState({
-              lightState: "red",
-              otherLightState: "green",
-              leftState: "stop",
-              otherLeftState: "caution",
-              photoState: phase4
-            });
-
-            break;
-
-          case "phase5":
-            _this.setState({
-              lightState: "red",
-              otherLightState: "yellow",
-              leftState: "stop",
-              otherLeftState: "caution",
-              photoState: phase5
-            });
-
-            break;
-
-          default:
-        }
+        _this.switchState(_this.state.phase);
       });
     }, _temp));
   }
@@ -37526,7 +37528,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59162" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63265" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
