@@ -61,9 +61,7 @@ class App extends React.Component {
       case "phase1":
         this.setState({
           northLightState: "green",
-          eastLightState: "red",
           northLeftState: "caution",
-          eastLeftState: "stop",
           photoState: phase1
         });
         break;
@@ -71,7 +69,6 @@ class App extends React.Component {
         this.setState({
           northLightState: "yellow",
           eastLightState: "red",
-          northLeftState: "caution",
           eastLeftState: "stop",
           photoState: phase2
         });
@@ -79,7 +76,6 @@ class App extends React.Component {
       case "phase3":
         this.setState({
           northLightState: "red",
-          eastLightState: "red",
           northLeftState: "stop",
           eastLeftState: "go",
           photoState: phase3
@@ -87,19 +83,14 @@ class App extends React.Component {
         break;
       case "phase4":
         this.setState({
-          northLightState: "red",
           eastLightState: "green",
-          northLeftState: "stop",
           eastLeftState: "caution",
           photoState: phase4
         });
         break;
       case "phase5":
         this.setState({
-          northLightState: "red",
           eastLightState: "yellow",
-          northLeftState: "stop",
-          eastLeftState: "caution",
           photoState: phase5
         });
         break;

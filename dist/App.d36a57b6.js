@@ -37477,9 +37477,7 @@ function (_React$Component) {
         case "phase1":
           _this.setState({
             northLightState: "green",
-            eastLightState: "red",
             northLeftState: "caution",
-            eastLeftState: "stop",
             photoState: phase1
           });
 
@@ -37489,7 +37487,6 @@ function (_React$Component) {
           _this.setState({
             northLightState: "yellow",
             eastLightState: "red",
-            northLeftState: "caution",
             eastLeftState: "stop",
             photoState: phase2
           });
@@ -37499,7 +37496,6 @@ function (_React$Component) {
         case "phase3":
           _this.setState({
             northLightState: "red",
-            eastLightState: "red",
             northLeftState: "stop",
             eastLeftState: "go",
             photoState: phase3
@@ -37509,9 +37505,7 @@ function (_React$Component) {
 
         case "phase4":
           _this.setState({
-            northLightState: "red",
             eastLightState: "green",
-            northLeftState: "stop",
             eastLeftState: "caution",
             photoState: phase4
           });
@@ -37520,10 +37514,7 @@ function (_React$Component) {
 
         case "phase5":
           _this.setState({
-            northLightState: "red",
             eastLightState: "yellow",
-            northLeftState: "stop",
-            eastLeftState: "caution",
             photoState: phase5
           });
 
@@ -37612,7 +37603,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49676" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50455" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
