@@ -85,13 +85,12 @@ export const Icon = styled.div`
 ${props =>
   props.inputColor === "go" &&
   css`
-    color: #34ca4a;
-    animation: ${rotateRule};
+    color: red;
   `}
   ${props =>
     props.inputColor === "caution" &&
     css`
-      color: orange;
+      color: #34ca4a;
       animation: ${rotateRule};
     `}
   ${props =>

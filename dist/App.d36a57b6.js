@@ -30668,7 +30668,7 @@ function _templateObject11() {
 }
 
 function _templateObject10() {
-  var data = _taggedTemplateLiteral(["\n      color: orange;\n      animation: ", ";\n    "]);
+  var data = _taggedTemplateLiteral(["\n      color: #34ca4a;\n      animation: ", ";\n    "]);
 
   _templateObject10 = function _templateObject10() {
     return data;
@@ -30678,7 +30678,7 @@ function _templateObject10() {
 }
 
 function _templateObject9() {
-  var data = _taggedTemplateLiteral(["\n    color: #34ca4a;\n    animation: ", ";\n  "]);
+  var data = _taggedTemplateLiteral(["\n    color: red;\n  "]);
 
   _templateObject9 = function _templateObject9() {
     return data;
@@ -30790,7 +30790,7 @@ var rotate = (0, _styledComponents.keyframes)(_templateObject6());
 var rotateRule = (0, _styledComponents.css)(_templateObject7(), rotate);
 
 var Icon = _styledComponents.default.div(_templateObject8(), function (props) {
-  return props.inputColor === "go" && (0, _styledComponents.css)(_templateObject9(), rotateRule);
+  return props.inputColor === "go" && (0, _styledComponents.css)(_templateObject9());
 }, function (props) {
   return props.inputColor === "caution" && (0, _styledComponents.css)(_templateObject10(), rotateRule);
 }, function (props) {
@@ -37612,7 +37612,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65371" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49676" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
