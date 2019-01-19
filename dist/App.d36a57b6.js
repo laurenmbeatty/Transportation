@@ -37360,9 +37360,9 @@ function (_React$Component) {
     }
 
     return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(App)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = {
-      lightState: "green",
+      lightState: "red",
       otherLightState: "red",
-      leftState: "caution",
+      leftState: "go",
       otherLeftState: "stop",
       phase: "phase0",
       photoState: phase0
@@ -37386,7 +37386,7 @@ function (_React$Component) {
         TIMER: "phase0"
       }
     }, _this.switchState = function (state) {
-      switch (_this.state.phase) {
+      switch (state) {
         case "phase0":
           _this.setState({
             lightState: "red",
@@ -37528,7 +37528,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63265" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64651" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

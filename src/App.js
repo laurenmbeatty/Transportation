@@ -14,9 +14,9 @@ const phase5 = require("../public/Phase5.png");
 library.add(faArrowLeft);
 class App extends React.Component {
   state = {
-    lightState: "green",
+    lightState: "red",
     otherLightState: "red",
-    leftState: "caution",
+    leftState: "go",
     otherLeftState: "stop",
     phase: "phase0",
     photoState: phase0
@@ -43,7 +43,7 @@ class App extends React.Component {
     }
   };
   switchState = state => {
-    switch (this.state.phase) {
+    switch (state) {
       case "phase0":
         this.setState({
           lightState: "red",
