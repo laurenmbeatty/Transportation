@@ -20,7 +20,6 @@ Find the finished product at [http://lauren-transportation.surge.sh/](http://lau
 - [Parcel](https://parceljs.org/) as the bundler/build tool. 📦
 - [React](https://reactjs.org/) as the frontend library. Note, this project was scaffolded/configured with a custom configuration, rather than using an out-of-the-box system like create-react-app.
 - [styled-components](https://www.styled-components.com/) for modular CSS. 💅
-- [Jest](https://jestjs.io/) and [react-testing-library](https://github.com/kentcdodds/react-testing-library#installation) for testing. 💯
 
 ### Tech Design/Process
 
