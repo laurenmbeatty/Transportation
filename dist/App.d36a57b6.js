@@ -28420,65 +28420,96 @@ function (_React$Component) {
       lightState: "green",
       otherLightState: "red",
       leftState: "caution",
-      otherLeftState: "stop"
-    }, _this.machine = {
-      green: {
-        TIMER: "yellow"
+      otherLeftState: "stop",
+      phase: "phase0"
+    }, _this.lightMachine = {
+      phase0: {
+        TIMER: "phase1"
       },
-      yellow: {
-        TIMER: "red"
+      phase1: {
+        TIMER: "phase2"
       },
-      red: {
-        TIMER: "green"
-      }
-    }, _this.otherMachine = {
-      green: {
-        OTHER_TIMER: "yellow"
+      phase2: {
+        TIMER: "phase3"
       },
-      yellow: {
-        OTHER_TIMER: "red"
+      phase3: {
+        TIMER: "phase4"
       },
-      red: {
-        OTHER_TIMER: "green"
-      }
-    }, _this.leftTurnMachine = {
-      go: {
-        LEFT_TURN_TIMER: "caution"
+      phase4: {
+        TIMER: "phase5"
       },
-      caution: {
-        LEFT_TURN_TIMER: "stop"
-      },
-      stop: {
-        LEFT_TURN_TIMER: "go"
-      }
-    }, _this.otherLeftTurnMachine = {
-      go: {
-        OTHER_LEFT_TURN_TIMER: "caution"
-      },
-      caution: {
-        OTHER_LEFT_TURN_TIMER: "stop"
-      },
-      stop: {
-        OTHER_LEFT_TURN_TIMER: "go"
+      phase5: {
+        TIMER: "phase0"
       }
     }, _this.transition = function (state, action) {
-      if (action === "TIMER") {
-        _this.setState({
-          lightState: _this.machine[state][action]
-        });
-      } else if (action === "OTHER_TIMER") {
-        _this.setState({
-          otherLightState: _this.otherMachine[state][action]
-        });
-      } else if (action === "LEFT_TURN_TIMER") {
-        _this.setState({
-          leftState: _this.leftTurnMachine[state][action]
-        });
-      } else if (action === "OTHER_LEFT_TURN_TIMER") {
-        _this.setState({
-          otherLeftState: _this.otherLeftTurnMachine[state][action]
-        });
-      }
+      _this.setState({
+        phase: _this.lightMachine[state][action]
+      }, function () {
+        switch (_this.state.phase) {
+          case "phase0":
+            _this.setState({
+              lightState: "red",
+              otherLightState: "red",
+              leftState: "go",
+              otherLeftState: "stop"
+            });
+
+            break;
+
+          case "phase1":
+            _this.setState({
+              lightState: "green",
+              otherLightState: "red",
+              leftState: "caution",
+              otherLeftState: "stop"
+            });
+
+            break;
+
+          case "phase2":
+            _this.setState({
+              lightState: "yellow",
+              otherLightState: "red",
+              leftState: "caution",
+              otherLeftState: "stop"
+            });
+
+            break;
+
+          case "phase3":
+            _this.setState({
+              lightState: "red",
+              otherLightState: "red",
+              leftState: "stop",
+              otherLeftState: "go"
+            });
+
+            break;
+
+          case "phase4":
+            _this.setState({
+              lightState: "red",
+              otherLightState: "green",
+              leftState: "stop",
+              otherLeftState: "caution"
+            });
+
+            break;
+
+          case "phase5":
+            _this.setState({
+              lightState: "red",
+              otherLightState: "yellow",
+              leftState: "stop",
+              otherLeftState: "caution"
+            });
+
+            break;
+
+          default: // code block
+
+        }
+      });
     }, _temp));
   }
 
@@ -28488,13 +28519,7 @@ function (_React$Component) {
       var _this2 = this;
 
       setInterval(function () {
-        _this2.transition(_this2.state.lightState, "TIMER");
-
-        _this2.transition(_this2.state.otherLightState, "OTHER_TIMER");
-
-        _this2.transition(_this2.state.leftState, "LEFT_TURN_TIMER");
-
-        _this2.transition(_this2.state.otherLeftState, "OTHER_LEFT_TURN_TIMER");
+        _this2.transition(_this2.state.phase, "TIMER");
       }, 4000);
     }
   }, {
@@ -28548,7 +28573,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61951" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55999" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

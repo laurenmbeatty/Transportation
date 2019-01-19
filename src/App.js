@@ -7,83 +7,96 @@ class App extends React.Component {
     lightState: "green",
     otherLightState: "red",
     leftState: "caution",
-    otherLeftState: "stop"
+    otherLeftState: "stop",
+    phase: "phase0"
   };
 
-  machine = {
-    green: {
-      TIMER: "yellow"
+  lightMachine = {
+    phase0: {
+      TIMER: "phase1"
     },
-    yellow: {
-      TIMER: "red"
+    phase1: {
+      TIMER: "phase2"
     },
-    red: {
-      TIMER: "green"
+    phase2: {
+      TIMER: "phase3"
+    },
+    phase3: {
+      TIMER: "phase4"
+    },
+    phase4: {
+      TIMER: "phase5"
+    },
+    phase5: {
+      TIMER: "phase0"
     }
   };
-
-  otherMachine = {
-    green: {
-      OTHER_TIMER: "yellow"
-    },
-    yellow: {
-      OTHER_TIMER: "red"
-    },
-    red: {
-      OTHER_TIMER: "green"
-    }
-  };
-
-  leftTurnMachine = {
-    go: {
-      LEFT_TURN_TIMER: "caution"
-    },
-    caution: {
-      LEFT_TURN_TIMER: "stop"
-    },
-    stop: {
-      LEFT_TURN_TIMER: "go"
-    }
-  };
-
-  otherLeftTurnMachine = {
-    go: {
-      OTHER_LEFT_TURN_TIMER: "caution"
-    },
-    caution: {
-      OTHER_LEFT_TURN_TIMER: "stop"
-    },
-    stop: {
-      OTHER_LEFT_TURN_TIMER: "go"
-    }
-  };
-
   transition = (state, action) => {
-    if (action === "TIMER") {
-      this.setState({
-        lightState: this.machine[state][action]
-      });
-    } else if (action === "OTHER_TIMER") {
-      this.setState({
-        otherLightState: this.otherMachine[state][action]
-      });
-    } else if (action === "LEFT_TURN_TIMER") {
-      this.setState({
-        leftState: this.leftTurnMachine[state][action]
-      });
-    } else if (action === "OTHER_LEFT_TURN_TIMER") {
-      this.setState({
-        otherLeftState: this.otherLeftTurnMachine[state][action]
-      });
-    }
+    this.setState(
+      {
+        phase: this.lightMachine[state][action]
+      },
+      () => {
+        switch (this.state.phase) {
+          case "phase0":
+            this.setState({
+              lightState: "red",
+              otherLightState: "red",
+              leftState: "go",
+              otherLeftState: "stop"
+            });
+            break;
+          case "phase1":
+            this.setState({
+              lightState: "green",
+              otherLightState: "red",
+              leftState: "caution",
+              otherLeftState: "stop"
+            });
+            break;
+          case "phase2":
+            this.setState({
+              lightState: "yellow",
+              otherLightState: "red",
+              leftState: "caution",
+              otherLeftState: "stop"
+            });
+            break;
+          case "phase3":
+            this.setState({
+              lightState: "red",
+              otherLightState: "red",
+              leftState: "stop",
+              otherLeftState: "go"
+            });
+            break;
+
+          case "phase4":
+            this.setState({
+              lightState: "red",
+              otherLightState: "green",
+              leftState: "stop",
+              otherLeftState: "caution"
+            });
+            break;
+          case "phase5":
+            this.setState({
+              lightState: "red",
+              otherLightState: "yellow",
+              leftState: "stop",
+              otherLeftState: "caution"
+            });
+            break;
+          default:
+          // code block
+        }
+      }
+    );
   };
 
   componentDidMount() {
     setInterval(() => {
-      this.transition(this.state.lightState, "TIMER");
-      this.transition(this.state.otherLightState, "OTHER_TIMER");
-      this.transition(this.state.leftState, "LEFT_TURN_TIMER");
-      this.transition(this.state.otherLeftState, "OTHER_LEFT_TURN_TIMER");
+      this.transition(this.state.phase, "TIMER");
     }, 4000);
   }
 
