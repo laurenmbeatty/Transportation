@@ -46,6 +46,7 @@ class App extends React.Component {
       TIMER: "phase0"
     }
   };
+
   switchState = state => {
     switch (state) {
       case "phase0":
@@ -84,7 +85,6 @@ class App extends React.Component {
           photoState: phase3
         });
         break;
-
       case "phase4":
         this.setState({
           northLightState: "red",
@@ -113,6 +113,7 @@ class App extends React.Component {
         });
     }
   };
+
   transition = (state, action) => {
     this.setState(
       {
