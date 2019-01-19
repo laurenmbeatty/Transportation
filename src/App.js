@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import TrafficLight from "./components/TrafficLight/TrafficLight";
 import * as Styled from "./styles";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faTimes } from "@fortawesome/free-solid-svg-icons";
 const phase0 = require("../public/Phase0.png");
 const phase1 = require("../public/Phase1.png");
 const phase2 = require("../public/Phase2.png");
@@ -11,13 +11,13 @@ const phase3 = require("../public/Phase3.png");
 const phase4 = require("../public/Phase4.png");
 const phase5 = require("../public/Phase5.png");
 
-library.add(faArrowLeft);
+library.add(faArrowLeft, faTimes);
 class App extends React.Component {
   state = {
-    lightState: "red",
-    otherLightState: "red",
-    leftState: "go",
-    otherLeftState: "stop",
+    northLightState: "red",
+    eastLightState: "red",
+    northLeftState: "go",
+    eastLeftState: "stop",
     phase: "phase0",
     photoState: phase0
   };
@@ -46,65 +46,65 @@ class App extends React.Component {
     switch (state) {
       case "phase0":
         this.setState({
-          lightState: "red",
-          otherLightState: "red",
-          leftState: "go",
-          otherLeftState: "stop",
+          northLightState: "red",
+          eastLightState: "red",
+          northLeftState: "go",
+          eastLeftState: "stop",
           photoState: phase0
         });
         break;
       case "phase1":
         this.setState({
-          lightState: "green",
-          otherLightState: "red",
-          leftState: "caution",
-          otherLeftState: "stop",
+          northLightState: "green",
+          eastLightState: "red",
+          northLeftState: "caution",
+          eastLeftState: "stop",
           photoState: phase1
         });
         break;
       case "phase2":
         this.setState({
-          lightState: "yellow",
-          otherLightState: "red",
-          leftState: "caution",
-          otherLeftState: "stop",
+          northLightState: "yellow",
+          eastLightState: "red",
+          northLeftState: "caution",
+          eastLeftState: "stop",
           photoState: phase2
         });
         break;
       case "phase3":
         this.setState({
-          lightState: "red",
-          otherLightState: "red",
-          leftState: "stop",
-          otherLeftState: "go",
+          northLightState: "red",
+          eastLightState: "red",
+          northLeftState: "stop",
+          eastLeftState: "go",
           photoState: phase3
         });
         break;
 
       case "phase4":
         this.setState({
-          lightState: "red",
-          otherLightState: "green",
-          leftState: "stop",
-          otherLeftState: "caution",
+          northLightState: "red",
+          eastLightState: "green",
+          northLeftState: "stop",
+          eastLeftState: "caution",
           photoState: phase4
         });
         break;
       case "phase5":
         this.setState({
-          lightState: "red",
-          otherLightState: "yellow",
-          leftState: "stop",
-          otherLeftState: "caution",
+          northLightState: "red",
+          eastLightState: "yellow",
+          northLeftState: "stop",
+          eastLeftState: "caution",
           photoState: phase5
         });
         break;
       default:
         this.setState({
-          lightState: "red",
-          otherLightState: "red",
-          leftState: "go",
-          otherLeftState: "stop",
+          northLightState: "red",
+          eastLightState: "red",
+          northLeftState: "go",
+          eastLeftState: "stop",
           photoState: phase0
         });
     }
@@ -128,24 +128,28 @@ class App extends React.Component {
 
   render() {
     const {
-      lightState,
-      otherLightState,
-      leftState,
-      otherLeftState,
+      northLightState,
+      eastLightState,
+      northLeftState,
+      eastLeftState,
       photoState
     } = this.state;
     return (
       <Styled.Container>
         <Styled.Section>
           <h1>North/South Intersection</h1>
-          <TrafficLight color={lightState} leftColor={leftState} id="central" />
+          <TrafficLight
+            color={northLightState}
+            leftColor={northLeftState}
+            id="central"
+          />
         </Styled.Section>
         <img src={photoState} alt={`traffic flow pattern ${photoState}`} />
         <Styled.Section>
           <h1>East/West Intersection</h1>
           <TrafficLight
-            color={otherLightState}
-            leftColor={otherLeftState}
+            color={eastLightState}
+            leftColor={eastLeftState}
             id="spring"
           />
         </Styled.Section>

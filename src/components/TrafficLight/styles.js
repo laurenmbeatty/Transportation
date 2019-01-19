@@ -33,8 +33,7 @@ const animationRule = css`
   ${flash} 1s infinite alternate;
 `;
 export const LeftLight = styled(Light)`
-  background-color: ${props =>
-    props.inputColor === "caution" ? "orange" : "#333"};
+  color: #333;
   &.flash {
     animation: ${animationRule};
     .fa-arrow-left {
@@ -42,7 +41,8 @@ export const LeftLight = styled(Light)`
     }
   }
   position: relative;
-  .fa-arrow-left {
+  .fa-arrow-left,
+  .fa-times {
     position: absolute;
     left: 1.5vmin;
     top: 1.5vmin;
@@ -50,6 +50,6 @@ export const LeftLight = styled(Light)`
     color: ${props =>
       props.inputColor === "go" || props.inputColor === "caution"
         ? "#34CA4A"
-        : "#333"};
+        : "red"};
   }
 `;

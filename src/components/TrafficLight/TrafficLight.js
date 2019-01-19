@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Styled from "./styles";
+
 class TrafficLight extends React.Component {
   render() {
     const { color, leftColor } = this.props;
@@ -19,7 +20,11 @@ class TrafficLight extends React.Component {
           className={leftColor === "caution" ? "flash" : ""}
           inputColor={leftColor}
         >
-          <FontAwesomeIcon icon="arrow-left" />
+          {leftColor === "stop" ? (
+            <FontAwesomeIcon icon="times" />
+          ) : (
+            <FontAwesomeIcon icon="arrow-left" />
+          )}
         </Styled.LeftLight>
       </Styled.TrafficLight>
     );

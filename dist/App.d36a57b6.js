@@ -30658,7 +30658,7 @@ var _styledComponents = _interopRequireWildcard(require("styled-components"));
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n  background-color: ", ";\n  &.flash {\n    animation: ", ";\n    .fa-arrow-left {\n      color: orange;\n    }\n  }\n  position: relative;\n  .fa-arrow-left {\n    position: absolute;\n    left: 1.5vmin;\n    top: 1.5vmin;\n    font-size: 1.5rem;\n    color: ", ";\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  color: #333;\n  &.flash {\n    animation: ", ";\n    .fa-arrow-left {\n      color: orange;\n    }\n  }\n  position: relative;\n  .fa-arrow-left,\n  .fa-times {\n    position: absolute;\n    left: 1.5vmin;\n    top: 1.5vmin;\n    font-size: 1.5rem;\n    color: ", ";\n  }\n"]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -30722,10 +30722,8 @@ var Light = _styledComponents.default.div(_templateObject2(), function (props) {
 exports.Light = Light;
 var flash = (0, _styledComponents.keyframes)(_templateObject3());
 var animationRule = (0, _styledComponents.css)(_templateObject4(), flash);
-var LeftLight = (0, _styledComponents.default)(Light)(_templateObject5(), function (props) {
-  return props.inputColor === "caution" ? "orange" : "#333";
-}, animationRule, function (props) {
-  return props.inputColor === "go" || props.inputColor === "caution" ? "#34CA4A" : "#333";
+var LeftLight = (0, _styledComponents.default)(Light)(_templateObject5(), animationRule, function (props) {
+  return props.inputColor === "go" || props.inputColor === "caution" ? "#34CA4A" : "red";
 });
 exports.LeftLight = LeftLight;
 },{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/TrafficLight/TrafficLight.js":[function(require,module,exports) {
@@ -30793,7 +30791,9 @@ function (_React$Component) {
       }), _react.default.createElement(Styled.LeftLight, {
         className: leftColor === "caution" ? "flash" : "",
         inputColor: leftColor
-      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+      }, leftColor === "stop" ? _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: "times"
+      }) : _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
         icon: "arrow-left"
       })));
     }
@@ -37339,7 +37339,7 @@ var phase4 = require("../public/Phase4.png");
 
 var phase5 = require("../public/Phase5.png");
 
-_fontawesomeSvgCore.library.add(_freeSolidSvgIcons.faArrowLeft);
+_fontawesomeSvgCore.library.add(_freeSolidSvgIcons.faArrowLeft, _freeSolidSvgIcons.faTimes);
 
 var App =
 /*#__PURE__*/
@@ -37360,10 +37360,10 @@ function (_React$Component) {
     }
 
     return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(App)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = {
-      lightState: "red",
-      otherLightState: "red",
-      leftState: "go",
-      otherLeftState: "stop",
+      northLightState: "red",
+      eastLightState: "red",
+      northLeftState: "go",
+      eastLeftState: "stop",
       phase: "phase0",
       photoState: phase0
     }, _this.lightMachine = {
@@ -37389,10 +37389,10 @@ function (_React$Component) {
       switch (state) {
         case "phase0":
           _this.setState({
-            lightState: "red",
-            otherLightState: "red",
-            leftState: "go",
-            otherLeftState: "stop",
+            northLightState: "red",
+            eastLightState: "red",
+            northLeftState: "go",
+            eastLeftState: "stop",
             photoState: phase0
           });
 
@@ -37400,10 +37400,10 @@ function (_React$Component) {
 
         case "phase1":
           _this.setState({
-            lightState: "green",
-            otherLightState: "red",
-            leftState: "caution",
-            otherLeftState: "stop",
+            northLightState: "green",
+            eastLightState: "red",
+            northLeftState: "caution",
+            eastLeftState: "stop",
             photoState: phase1
           });
 
@@ -37411,10 +37411,10 @@ function (_React$Component) {
 
         case "phase2":
           _this.setState({
-            lightState: "yellow",
-            otherLightState: "red",
-            leftState: "caution",
-            otherLeftState: "stop",
+            northLightState: "yellow",
+            eastLightState: "red",
+            northLeftState: "caution",
+            eastLeftState: "stop",
             photoState: phase2
           });
 
@@ -37422,10 +37422,10 @@ function (_React$Component) {
 
         case "phase3":
           _this.setState({
-            lightState: "red",
-            otherLightState: "red",
-            leftState: "stop",
-            otherLeftState: "go",
+            northLightState: "red",
+            eastLightState: "red",
+            northLeftState: "stop",
+            eastLeftState: "go",
             photoState: phase3
           });
 
@@ -37433,10 +37433,10 @@ function (_React$Component) {
 
         case "phase4":
           _this.setState({
-            lightState: "red",
-            otherLightState: "green",
-            leftState: "stop",
-            otherLeftState: "caution",
+            northLightState: "red",
+            eastLightState: "green",
+            northLeftState: "stop",
+            eastLeftState: "caution",
             photoState: phase4
           });
 
@@ -37444,10 +37444,10 @@ function (_React$Component) {
 
         case "phase5":
           _this.setState({
-            lightState: "red",
-            otherLightState: "yellow",
-            leftState: "stop",
-            otherLeftState: "caution",
+            northLightState: "red",
+            eastLightState: "yellow",
+            northLeftState: "stop",
+            eastLeftState: "caution",
             photoState: phase5
           });
 
@@ -37455,10 +37455,10 @@ function (_React$Component) {
 
         default:
           _this.setState({
-            lightState: "red",
-            otherLightState: "red",
-            leftState: "go",
-            otherLeftState: "stop",
+            northLightState: "red",
+            eastLightState: "red",
+            northLeftState: "go",
+            eastLeftState: "stop",
             photoState: phase0
           });
 
@@ -37485,21 +37485,21 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$state = this.state,
-          lightState = _this$state.lightState,
-          otherLightState = _this$state.otherLightState,
-          leftState = _this$state.leftState,
-          otherLeftState = _this$state.otherLeftState,
+          northLightState = _this$state.northLightState,
+          eastLightState = _this$state.eastLightState,
+          northLeftState = _this$state.northLeftState,
+          eastLeftState = _this$state.eastLeftState,
           photoState = _this$state.photoState;
       return _react.default.createElement(Styled.Container, null, _react.default.createElement(Styled.Section, null, _react.default.createElement("h1", null, "North/South Intersection"), _react.default.createElement(_TrafficLight.default, {
-        color: lightState,
-        leftColor: leftState,
+        color: northLightState,
+        leftColor: northLeftState,
         id: "central"
       })), _react.default.createElement("img", {
         src: photoState,
         alt: "traffic flow pattern ".concat(photoState)
       }), _react.default.createElement(Styled.Section, null, _react.default.createElement("h1", null, "East/West Intersection"), _react.default.createElement(_TrafficLight.default, {
-        color: otherLightState,
-        leftColor: otherLeftState,
+        color: eastLightState,
+        leftColor: eastLeftState,
         id: "spring"
       })));
     }
@@ -37536,7 +37536,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50566" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51226" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
