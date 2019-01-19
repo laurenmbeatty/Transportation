@@ -100,6 +100,13 @@ class App extends React.Component {
         });
         break;
       default:
+        this.setState({
+          lightState: "red",
+          otherLightState: "red",
+          leftState: "go",
+          otherLeftState: "stop",
+          photoState: phase0
+        });
     }
   };
   transition = (state, action) => {

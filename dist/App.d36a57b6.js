@@ -37454,6 +37454,14 @@ function (_React$Component) {
           break;
 
         default:
+          _this.setState({
+            lightState: "red",
+            otherLightState: "red",
+            leftState: "go",
+            otherLeftState: "stop",
+            photoState: phase0
+          });
+
       }
     }, _this.transition = function (state, action) {
       _this.setState({
@@ -37528,7 +37536,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50525" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50566" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
