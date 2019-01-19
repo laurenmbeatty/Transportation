@@ -3,7 +3,11 @@ import { render } from "react-dom";
 import TrafficLight from "./components/TrafficLight/TrafficLight";
 import * as Styled from "./styles";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faArrowLeft, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faTimes,
+  faWalking
+} from "@fortawesome/free-solid-svg-icons";
 const phase0 = require("../public/Phase0.png");
 const phase1 = require("../public/Phase1.png");
 const phase2 = require("../public/Phase2.png");
@@ -11,7 +15,7 @@ const phase3 = require("../public/Phase3.png");
 const phase4 = require("../public/Phase4.png");
 const phase5 = require("../public/Phase5.png");
 
-library.add(faArrowLeft, faTimes);
+library.add(faArrowLeft, faTimes, faWalking);
 class App extends React.Component {
   state = {
     northLightState: "red",

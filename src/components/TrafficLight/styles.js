@@ -53,3 +53,50 @@ export const LeftLight = styled(Light)`
         : "red"};
   }
 `;
+
+const rotate = keyframes`
+  0% {
+      transform: rotate(10deg);
+  }
+  25% {
+      transform: rotate(-10deg);
+  }
+  50% {
+      transform: rotate(10deg)
+  }
+  75% {
+    transform: rotate(-10deg)
+  }
+  100% {
+    transform: rotate(0deg)
+  }
+`;
+const rotateRule = css`
+  ${rotate} 1s infinite alternate;
+`;
+export const Icon = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .fa-walking {
+      font-size: 1.5rem;
+      margin-top: 10px;
+  }
+${props =>
+  props.inputColor === "go" &&
+  css`
+    color: #34ca4a;
+    animation: ${rotateRule};
+  `}
+  ${props =>
+    props.inputColor === "caution" &&
+    css`
+      color: orange;
+      animation: ${rotateRule};
+    `}
+  ${props =>
+    props.inputColor === "stop" &&
+    css`
+      color: red;
+    `}
+`;

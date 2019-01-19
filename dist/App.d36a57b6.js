@@ -30651,11 +30651,71 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.LeftLight = exports.Light = exports.TrafficLight = void 0;
+exports.Icon = exports.LeftLight = exports.Light = exports.TrafficLight = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _templateObject11() {
+  var data = _taggedTemplateLiteral(["\n      color: red;\n    "]);
+
+  _templateObject11 = function _templateObject11() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject10() {
+  var data = _taggedTemplateLiteral(["\n      color: orange;\n      animation: ", ";\n    "]);
+
+  _templateObject10 = function _templateObject10() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject9() {
+  var data = _taggedTemplateLiteral(["\n    color: #34ca4a;\n    animation: ", ";\n  "]);
+
+  _templateObject9 = function _templateObject9() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject8() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  .fa-walking {\n      font-size: 1.5rem;\n      margin-top: 10px;\n  }\n", "\n  ", "\n  ", "\n"]);
+
+  _templateObject8 = function _templateObject8() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject7() {
+  var data = _taggedTemplateLiteral(["\n  ", " 1s infinite alternate;\n"]);
+
+  _templateObject7 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject6() {
+  var data = _taggedTemplateLiteral(["\n  0% {\n      transform: rotate(10deg);\n  }\n  25% {\n      transform: rotate(-10deg);\n  }\n  50% {\n      transform: rotate(10deg)\n  }\n  75% {\n    transform: rotate(-10deg)\n  }\n  100% {\n    transform: rotate(0deg)\n  }\n"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
 
 function _templateObject5() {
   var data = _taggedTemplateLiteral(["\n  color: #333;\n  &.flash {\n    animation: ", ";\n    .fa-arrow-left {\n      color: orange;\n    }\n  }\n  position: relative;\n  .fa-arrow-left,\n  .fa-times {\n    position: absolute;\n    left: 1.5vmin;\n    top: 1.5vmin;\n    font-size: 1.5rem;\n    color: ", ";\n  }\n"]);
@@ -30726,6 +30786,18 @@ var LeftLight = (0, _styledComponents.default)(Light)(_templateObject5(), animat
   return props.inputColor === "go" || props.inputColor === "caution" ? "#34CA4A" : "red";
 });
 exports.LeftLight = LeftLight;
+var rotate = (0, _styledComponents.keyframes)(_templateObject6());
+var rotateRule = (0, _styledComponents.css)(_templateObject7(), rotate);
+
+var Icon = _styledComponents.default.div(_templateObject8(), function (props) {
+  return props.inputColor === "go" && (0, _styledComponents.css)(_templateObject9(), rotateRule);
+}, function (props) {
+  return props.inputColor === "caution" && (0, _styledComponents.css)(_templateObject10(), rotateRule);
+}, function (props) {
+  return props.inputColor === "stop" && (0, _styledComponents.css)(_templateObject11());
+});
+
+exports.Icon = Icon;
 },{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/TrafficLight/TrafficLight.js":[function(require,module,exports) {
 "use strict";
 
@@ -30779,7 +30851,7 @@ function (_React$Component) {
       var _this$props = this.props,
           color = _this$props.color,
           leftColor = _this$props.leftColor;
-      return _react.default.createElement(Styled.TrafficLight, null, _react.default.createElement(Styled.Light, {
+      return _react.default.createElement("div", null, _react.default.createElement(Styled.TrafficLight, null, _react.default.createElement(Styled.Light, {
         opacity: color === "red" ? 1 : 0.3,
         inputColor: "red"
       }), _react.default.createElement(Styled.Light, {
@@ -30795,6 +30867,10 @@ function (_React$Component) {
         icon: "times"
       }) : _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
         icon: "arrow-left"
+      }))), _react.default.createElement(Styled.Icon, {
+        inputColor: leftColor
+      }, _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
+        icon: "walking"
       })));
     }
   }]);
@@ -37339,7 +37415,7 @@ var phase4 = require("../public/Phase4.png");
 
 var phase5 = require("../public/Phase5.png");
 
-_fontawesomeSvgCore.library.add(_freeSolidSvgIcons.faArrowLeft, _freeSolidSvgIcons.faTimes);
+_fontawesomeSvgCore.library.add(_freeSolidSvgIcons.faArrowLeft, _freeSolidSvgIcons.faTimes, _freeSolidSvgIcons.faWalking);
 
 var App =
 /*#__PURE__*/
@@ -37536,7 +37612,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54613" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64531" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
