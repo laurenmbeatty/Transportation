@@ -4,7 +4,7 @@ Find the finished product at [http://lauren-transportation.surge.sh/](http://lau
 
 ### Get Started
 
-- `git clone https://github.com/laurenmbeatty/MyRetail.git` - Clone the repository to your machine.
+- `git clone https://github.com/laurenmbeatty/Transportation.git` - Clone the repository to your machine.
 - `npm install` - Install the necessary dependencies.
 - `npm run dev` - Start a local development server at [locahost:1234](http://localhost:1234).
 
