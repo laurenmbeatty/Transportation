@@ -30827,7 +30827,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  margin: 100px;\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin: 100px;\n  img {\n    width: 20rem;\n    height: 20rem;\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -37278,6 +37278,18 @@ var _iconsCache = {
   faYinYang: faYinYang
 };
 exports.fas = _iconsCache;
+},{}],"../public/Phase0.png":[function(require,module,exports) {
+module.exports = "/Phase0.43c27ca5.png";
+},{}],"../public/Phase1.png":[function(require,module,exports) {
+module.exports = "/Phase1.8d224dde.png";
+},{}],"../public/Phase2.png":[function(require,module,exports) {
+module.exports = "/Phase2.1990c6f4.png";
+},{}],"../public/Phase3.png":[function(require,module,exports) {
+module.exports = "/Phase3.fe9a0834.png";
+},{}],"../public/Phase4.png":[function(require,module,exports) {
+module.exports = "/Phase4.58133fb5.png";
+},{}],"../public/Phase5.png":[function(require,module,exports) {
+module.exports = "/Phase5.6f2f56ec.png";
 },{}],"App.js":[function(require,module,exports) {
 "use strict";
 
@@ -37315,6 +37327,18 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+var phase0 = require("../public/Phase0.png");
+
+var phase1 = require("../public/Phase1.png");
+
+var phase2 = require("../public/Phase2.png");
+
+var phase3 = require("../public/Phase3.png");
+
+var phase4 = require("../public/Phase4.png");
+
+var phase5 = require("../public/Phase5.png");
+
 _fontawesomeSvgCore.library.add(_freeSolidSvgIcons.faArrowLeft);
 
 var App =
@@ -37340,7 +37364,8 @@ function (_React$Component) {
       otherLightState: "red",
       leftState: "caution",
       otherLeftState: "stop",
-      phase: "phase0"
+      phase: "phase0",
+      photoState: phase0
     }, _this.lightMachine = {
       phase0: {
         TIMER: "phase1"
@@ -37370,7 +37395,8 @@ function (_React$Component) {
               lightState: "red",
               otherLightState: "red",
               leftState: "go",
-              otherLeftState: "stop"
+              otherLeftState: "stop",
+              photoState: phase0
             });
 
             break;
@@ -37380,7 +37406,8 @@ function (_React$Component) {
               lightState: "green",
               otherLightState: "red",
               leftState: "caution",
-              otherLeftState: "stop"
+              otherLeftState: "stop",
+              photoState: phase1
             });
 
             break;
@@ -37390,7 +37417,8 @@ function (_React$Component) {
               lightState: "yellow",
               otherLightState: "red",
               leftState: "caution",
-              otherLeftState: "stop"
+              otherLeftState: "stop",
+              photoState: phase2
             });
 
             break;
@@ -37400,7 +37428,8 @@ function (_React$Component) {
               lightState: "red",
               otherLightState: "red",
               leftState: "stop",
-              otherLeftState: "go"
+              otherLeftState: "go",
+              photoState: phase3
             });
 
             break;
@@ -37410,7 +37439,8 @@ function (_React$Component) {
               lightState: "red",
               otherLightState: "green",
               leftState: "stop",
-              otherLeftState: "caution"
+              otherLeftState: "caution",
+              photoState: phase4
             });
 
             break;
@@ -37420,7 +37450,8 @@ function (_React$Component) {
               lightState: "red",
               otherLightState: "yellow",
               leftState: "stop",
-              otherLeftState: "caution"
+              otherLeftState: "caution",
+              photoState: phase5
             });
 
             break;
@@ -37447,12 +37478,16 @@ function (_React$Component) {
           lightState = _this$state.lightState,
           otherLightState = _this$state.otherLightState,
           leftState = _this$state.leftState,
-          otherLeftState = _this$state.otherLeftState;
+          otherLeftState = _this$state.otherLeftState,
+          photoState = _this$state.photoState;
       return _react.default.createElement(Styled.Container, null, _react.default.createElement(Styled.Section, null, _react.default.createElement("h1", null, "North/South Intersection"), _react.default.createElement(_TrafficLight.default, {
         color: lightState,
         leftColor: leftState,
         id: "central"
-      })), _react.default.createElement(Styled.Section, null, _react.default.createElement("h1", null, "East/West Intersection"), _react.default.createElement(_TrafficLight.default, {
+      })), _react.default.createElement("img", {
+        src: photoState,
+        alt: "traffic flow pattern ".concat(photoState)
+      }), _react.default.createElement(Styled.Section, null, _react.default.createElement("h1", null, "East/West Intersection"), _react.default.createElement(_TrafficLight.default, {
         color: otherLightState,
         leftColor: otherLeftState,
         id: "spring"
@@ -37464,7 +37499,7 @@ function (_React$Component) {
 }(_react.default.Component);
 
 (0, _reactDom.render)(_react.default.createElement(App, null), document.getElementById("root"));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/TrafficLight/TrafficLight":"components/TrafficLight/TrafficLight.js","./styles":"styles.js","@fortawesome/fontawesome-svg-core":"../node_modules/@fortawesome/fontawesome-svg-core/index.es.js","@fortawesome/free-solid-svg-icons":"../node_modules/@fortawesome/free-solid-svg-icons/index.es.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/TrafficLight/TrafficLight":"components/TrafficLight/TrafficLight.js","./styles":"styles.js","@fortawesome/fontawesome-svg-core":"../node_modules/@fortawesome/fontawesome-svg-core/index.es.js","@fortawesome/free-solid-svg-icons":"../node_modules/@fortawesome/free-solid-svg-icons/index.es.js","../public/Phase0.png":"../public/Phase0.png","../public/Phase1.png":"../public/Phase1.png","../public/Phase2.png":"../public/Phase2.png","../public/Phase3.png":"../public/Phase3.png","../public/Phase4.png":"../public/Phase4.png","../public/Phase5.png":"../public/Phase5.png"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -37491,7 +37526,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56662" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59162" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

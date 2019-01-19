@@ -4,6 +4,12 @@ import TrafficLight from "./components/TrafficLight/TrafficLight";
 import * as Styled from "./styles";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+const phase0 = require("../public/Phase0.png");
+const phase1 = require("../public/Phase1.png");
+const phase2 = require("../public/Phase2.png");
+const phase3 = require("../public/Phase3.png");
+const phase4 = require("../public/Phase4.png");
+const phase5 = require("../public/Phase5.png");
 
 library.add(faArrowLeft);
 class App extends React.Component {
@@ -12,7 +18,8 @@ class App extends React.Component {
     otherLightState: "red",
     leftState: "caution",
     otherLeftState: "stop",
-    phase: "phase0"
+    phase: "phase0",
+    photoState: phase0
   };
 
   lightMachine = {
@@ -47,7 +54,8 @@ class App extends React.Component {
               lightState: "red",
               otherLightState: "red",
               leftState: "go",
-              otherLeftState: "stop"
+              otherLeftState: "stop",
+              photoState: phase0
             });
             break;
           case "phase1":
@@ -55,7 +63,8 @@ class App extends React.Component {
               lightState: "green",
               otherLightState: "red",
               leftState: "caution",
-              otherLeftState: "stop"
+              otherLeftState: "stop",
+              photoState: phase1
             });
             break;
           case "phase2":
@@ -63,7 +72,8 @@ class App extends React.Component {
               lightState: "yellow",
               otherLightState: "red",
               leftState: "caution",
-              otherLeftState: "stop"
+              otherLeftState: "stop",
+              photoState: phase2
             });
             break;
           case "phase3":
@@ -71,7 +81,8 @@ class App extends React.Component {
               lightState: "red",
               otherLightState: "red",
               leftState: "stop",
-              otherLeftState: "go"
+              otherLeftState: "go",
+              photoState: phase3
             });
             break;
 
@@ -80,7 +91,8 @@ class App extends React.Component {
               lightState: "red",
               otherLightState: "green",
               leftState: "stop",
-              otherLeftState: "caution"
+              otherLeftState: "caution",
+              photoState: phase4
             });
             break;
           case "phase5":
@@ -88,7 +100,8 @@ class App extends React.Component {
               lightState: "red",
               otherLightState: "yellow",
               leftState: "stop",
-              otherLeftState: "caution"
+              otherLeftState: "caution",
+              photoState: phase5
             });
             break;
           default:
@@ -108,7 +121,8 @@ class App extends React.Component {
       lightState,
       otherLightState,
       leftState,
-      otherLeftState
+      otherLeftState,
+      photoState
     } = this.state;
     return (
       <Styled.Container>
@@ -116,6 +130,7 @@ class App extends React.Component {
           <h1>North/South Intersection</h1>
           <TrafficLight color={lightState} leftColor={leftState} id="central" />
         </Styled.Section>
+        <img src={photoState} alt={`traffic flow pattern ${photoState}`} />
         <Styled.Section>
           <h1>East/West Intersection</h1>
           <TrafficLight
