@@ -30817,7 +30817,7 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  h1 {\n    text-align: center;\n  }\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -30827,7 +30827,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin: 100px;\n  img {\n    width: 20rem;\n    height: 20rem;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin: 100px;\n  img {\n    width: 20rem;\n    height: 20rem;\n  }\n  @media screen and (max-width: 700px) {\n    flex-direction: column;\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -37536,7 +37536,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53202" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54613" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
