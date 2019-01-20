@@ -7,7 +7,7 @@ class TrafficLight extends React.Component {
     const { color, leftColor } = this.props;
     return (
       <div>
-        <Styled.TrafficLight>
+        <Styled.TrafficLight data-testid="traffic-light">
           <Styled.Light opacity={color === "red" ? 1 : 0.3} inputColor="red" />
           <Styled.Light
             opacity={color === "yellow" ? 1 : 0.3}
